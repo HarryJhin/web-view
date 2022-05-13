@@ -2,6 +2,7 @@ package blog.jinhyun.web
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.inputmethod.EditorInfo
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import blog.jinhyun.web.databinding.ActivityMainBinding
@@ -30,5 +31,15 @@ class MainActivity : AppCompatActivity() {
 
         // `Url`를 전달하여 페이지 로드
         binding.webView.loadUrl("https://www.google.com/")
+
+        binding.editTextTextUri.setOnEditorActionListener { _, actionId, _ ->
+            // 설정한 키보드 액션(imeOptions)이 작동했다면 입력된 `url`을 웹뷰에 로드
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                binding.webView.loadUrl(binding.editTextTextUri.text.toString())
+                true
+            } else {
+                false
+            }
+        }
     }
 }
