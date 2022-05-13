@@ -42,4 +42,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    /**
+     * 뒤로가기 버튼 동작 재정의
+     */
+    override fun onBackPressed() {
+        // 뒤로 갈 수 있다면 뒤로 가기 수행
+        if (binding.webView.canGoBack()) {
+            binding.webView.goBack()
+        }
+        // 뒤로 갈 수 없다면 원래 동작(앱 종료) 수행
+        else {
+            super.onBackPressed()
+        }
+    }
 }
